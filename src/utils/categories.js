@@ -3,10 +3,10 @@
 // ─────────────────────────────────────────────────────────────────────────────
 
 export const CATEGORIES = {
-  'Materiales':   ['Vidrios', 'Tornillos', 'Accesorios', 'Masillas', 'Gomas', 'Puertas'],
-  'Mano de obra': ['Sueldos'],
+  'Materiales':   ['Aluminios','Vidrios', 'Tornillos', 'Accesorios', 'Masillas', 'Gomas', 'Puertas'],
+  'Mano de obra': ['Sueldos', 'Por dia'],
   'Transporte':   ['Transporte'],
-  'Pagos':        ['Cheques', 'Transferencias'],
+  'Pagos':        ['Cheques', 'Transferencias', 'Efectivo'],
   'Otros':        ['Otros gastos'],
 };
 
