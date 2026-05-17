@@ -6,7 +6,11 @@
   "installCommand": "npm install --legacy-peer-deps",
   "rewrites": [
     {
-      "source": "/(.*)",
+      "source": "/((?!google|sitemap|robots).+\\..+)",
+      "destination": "/"
+    },
+    {
+      "source": "/((?!google|sitemap|robots).*)",
       "destination": "/"
     }
   ],
