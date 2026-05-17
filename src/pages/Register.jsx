@@ -3,6 +3,7 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { firebaseErrorMsg } from '../utils/helpers';
 import { Link } from 'react-router-dom';
+import SEOHead from '../components/SEOHead';
 
 export default function Register({ onToast }) {
   const [email,   setEmail]   = useState('');
@@ -35,6 +36,12 @@ export default function Register({ onToast }) {
 
   return (
     <div className="min-h-dvh bg-paper flex flex-col items-center justify-center px-6 relative overflow-hidden">
+      <SEOHead
+        title="Registrarse"
+        description="Crea tu cuenta en Control de Gastos y empieza a gestionar las finanzas de tu empresa hoy mismo."
+        path="/register"
+        noIndex={true}
+      />
 
       {/* Background glow */}
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"

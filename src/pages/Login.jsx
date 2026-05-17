@@ -3,6 +3,7 @@ import { signInWithEmailAndPassword } from 'firebase/auth';
 import { auth } from '../firebase/config';
 import { firebaseErrorMsg } from '../utils/helpers';
 import { Link } from 'react-router-dom';
+import SEOHead from '../components/SEOHead';
 
 export default function Login({ onToast }) {
   const [email,   setEmail]   = useState('');
@@ -25,6 +26,12 @@ export default function Login({ onToast }) {
 
   return (
     <div className="min-h-dvh bg-paper flex flex-col items-center justify-center px-6 relative overflow-hidden">
+      <SEOHead
+        title="Iniciar sesión"
+        description="Accede a tu cuenta de Control de Gastos y gestiona las finanzas de tu empresa."
+        path="/login"
+        noIndex={true}
+      />
 
       {/* Background glow */}
       <div className="absolute -top-40 -right-40 w-[500px] h-[500px] rounded-full pointer-events-none"

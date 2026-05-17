@@ -3,25 +3,78 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
-    <title>Control de Gastos</title>
 
-    <!-- PWA -->
+    <!-- ─── SEO PRIMARIO ─────────────────────────────────────────────────── -->
+    <title>Control de Gastos — Gestión Financiera Empresarial</title>
+    <meta name="description" content="Aplicación profesional para controlar ingresos y gastos de tu empresa. Categoriza transacciones, visualiza reportes y exporta PDFs financieros fácilmente." />
+    <meta name="keywords" content="control de gastos, gestión financiera, ingresos y gastos, finanzas empresariales, reporte financiero, contabilidad, presupuesto empresa" />
+    <meta name="author" content="Control de Gastos" />
+    <meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+    <meta name="googlebot" content="index, follow" />
+    <link rel="canonical" href="https://controlsgastos.vercel.app/" />
+
+    <!-- ─── OPEN GRAPH (Facebook, WhatsApp, LinkedIn) ────────────────────── -->
+    <meta property="og:type"        content="website" />
+    <meta property="og:url"         content="https://controlsgastos.vercel.app/" />
+    <meta property="og:site_name"   content="Control de Gastos" />
+    <meta property="og:title"       content="Control de Gastos — Gestión Financiera Empresarial" />
+    <meta property="og:description" content="Controla ingresos y gastos de tu empresa. Categorías, gráficos, reportes PDF y más. Aplicación web profesional." />
+    <meta property="og:image"       content="https://controlsgastos.vercel.app/og-image.png" />
+    <meta property="og:image:width"  content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt"   content="Control de Gastos — Dashboard financiero" />
+    <meta property="og:locale"      content="es_DO" />
+
+    <!-- ─── TWITTER CARD ─────────────────────────────────────────────────── -->
+    <meta name="twitter:card"        content="summary_large_image" />
+    <meta name="twitter:url"         content="https://controlsgastos.vercel.app/" />
+    <meta name="twitter:title"       content="Control de Gastos — Gestión Financiera Empresarial" />
+    <meta name="twitter:description" content="Controla ingresos y gastos de tu empresa con categorías, gráficos y reportes PDF profesionales." />
+    <meta name="twitter:image"       content="https://controlsgastos.vercel.app/og-image.png" />
+
+    <!-- ─── SCHEMA.ORG JSON-LD (Google Rich Results) ─────────────────────── -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Control de Gastos",
+      "url": "https://controlsgastos.vercel.app/",
+      "description": "Aplicación profesional para controlar ingresos y gastos empresariales. Incluye categorías, gráficos financieros y exportación de reportes PDF.",
+      "applicationCategory": "FinanceApplication",
+      "operatingSystem": "Web, Android, iOS",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "DOP"
+      },
+      "featureList": [
+        "Control de ingresos y gastos",
+        "Categorías y subcategorías",
+        "Gráficos financieros",
+        "Exportar reporte PDF",
+        "Filtros por fecha",
+        "Instalable como PWA"
+      ],
+      "screenshot": "https://controlsgastos.vercel.app/og-image.png",
+      "inLanguage": "es"
+    }
+    </script>
+
+    <!-- ─── PWA ──────────────────────────────────────────────────────────── -->
     <link rel="manifest" href="/manifest.json" />
     <meta name="theme-color" content="#0A0A0A" />
-    
-    <!-- Apple Touch Icon - Korije pou SVG -->
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
     <meta name="apple-mobile-web-app-title" content="Gastos" />
-    <link rel="apple-touch-icon" href="/icons/icon-192.svg" />
+    <link rel="apple-touch-icon" href="/icons/icon-192.png" />
+    <link rel="icon" type="image/png" sizes="32x32"  href="/icons/icon-32.png" />
+    <link rel="icon" type="image/png" sizes="192x192" href="/icons/icon-192.png" />
 
-    <!-- Favicon - Ajoute sa a -->
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="alternate icon" href="/favicon.ico" type="image/x-icon" />
-
-    <!-- Fonts -->
+    <!-- ─── PERFORMANCE ──────────────────────────────────────────────────── -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://firestore.googleapis.com" />
+    <link rel="dns-prefetch" href="https://identitytoolkit.googleapis.com" />
     <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,400&family=DM+Mono:wght@400;500&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet" />
   </head>
   <body>

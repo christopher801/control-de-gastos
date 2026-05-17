@@ -13,6 +13,7 @@ import { PieChart, BarChart } from '../components/Chart';
 import TransactionList from '../components/TransactionList';
 import AddTransaction  from '../components/AddTransaction';
 import { generatePDF } from '../components/ExportPDF';
+import SEOHead         from '../components/SEOHead';
 
 import {
   todayStr, startOfMonthStr,
@@ -125,6 +126,12 @@ export default function Dashboard() {
   // ─────────────────────────────────────────────────────────────────────────
   return (
     <div className="min-h-dvh bg-paper">
+      <SEOHead
+        title="Dashboard"
+        description="Gestiona los ingresos y gastos de tu empresa en tiempo real."
+        path="/"
+        noIndex={true}
+      />
 
       <Header onExport={handleExport} />
 

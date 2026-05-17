@@ -9,20 +9,20 @@ const STATIC_ASSETS = [
 
 self.addEventListener('install', (event) => {
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) =>
-      cache.addAll(STATIC_ASSETS).catch(() => {})
-    )
+    caches.open(CACHE_NAME)
+      .then((cache) => cache.addAll(STATIC_ASSETS).catch(() => {}))
+      .then(() => self.skipWaiting()) // ✅ anndan waitUntil
   );
-  self.skipWaiting();
 });
 
 self.addEventListener('activate', (event) => {
   event.waitUntil(
-    caches.keys().then((keys) =>
-      Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
-    )
+    caches.keys()
+      .then((keys) =>
+        Promise.all(keys.filter((k) => k !== CACHE_NAME).map((k) => caches.delete(k)))
+      )
+      .then(() => self.clients.claim())
   );
-  self.clients.claim();
 });
 
 self.addEventListener('fetch', (event) => {
@@ -31,20 +31,22 @@ self.addEventListener('fetch', (event) => {
 
   if (request.method !== 'GET') return;
 
-  // Skip Firebase requests — always network
+  // Skip Firebase — toujou network
   if (
     url.hostname.includes('firestore.googleapis.com') ||
     url.hostname.includes('identitytoolkit.googleapis.com') ||
     url.hostname.includes('securetoken.googleapis.com')
   ) return;
 
-  // Navigation: network-first, fallback to cached index.html
+  // Navigation: network-first, fallback index.html
   if (request.mode === 'navigate') {
     event.respondWith(
       fetch(request)
         .then((res) => {
-          const clone = res.clone();
-          caches.open(CACHE_NAME).then((c) => c.put(request, clone));
+          if (res.ok) { // ✅ sèlman cache si response valid
+            const clone = res.clone();
+            caches.open(CACHE_NAME).then((c) => c.put(request, clone));
+          }
           return res;
         })
         .catch(() => caches.match('/index.html'))
@@ -52,17 +54,17 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Static assets: cache-first
+  // Assets statik: cache-first
   if (
     url.pathname.match(/\.(js|css|woff2?|ttf|png|jpg|svg|ico|webp)$/) ||
-    url.hostname.includes('fonts.') ||
+    url.hostname.includes('fonts.googleapis.com') ||
     url.hostname.includes('fonts.gstatic.com')
   ) {
     event.respondWith(
       caches.match(request).then((cached) => {
         if (cached) return cached;
         return fetch(request).then((res) => {
-          if (res.status === 200) {
+          if (res.ok) { // ✅ sèlman cache si response valid
             const clone = res.clone();
             caches.open(CACHE_NAME).then((c) => c.put(request, clone));
           }
@@ -73,7 +75,7 @@ self.addEventListener('fetch', (event) => {
     return;
   }
 
-  // Default: network with cache fallback
+  // Default: network ak cache fallback
   event.respondWith(
     fetch(request).catch(() => caches.match(request))
   );
